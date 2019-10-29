@@ -323,7 +323,7 @@ func main() {
 }
 
 func getHttpTransport(socksProxy, caCertFile *string, skipVerify bool) *http.Transport {
-	tr := http.Transport{}
+	tr := http.Transport{Proxy: http.ProxyFromEnvironment}
 	if socksProxy != nil {
 		dialer := &net.Dialer{}
 		dialSocksProxy, err := proxy.SOCKS5("tcp", *socksProxy, nil, dialer)
